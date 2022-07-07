@@ -8,7 +8,6 @@ const todoRouter = require("./routes/todo");
 
 const app = express();
 app.use(require("cors")());
-
 async function startServer() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -24,6 +23,10 @@ async function startServer() {
     process.exit();
   }
 }
+
+app.use(express.json({
+  extended: true
+}));
 
 app.use("/auth", authRouter);
 app.use("/todo", todoRouter);

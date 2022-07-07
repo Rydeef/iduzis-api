@@ -75,6 +75,7 @@ module.exports.register = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
+    console.log(req.body);
     const {
       username,
       password
@@ -82,7 +83,6 @@ module.exports.login = async (req, res) => {
     const user = await User.findOne({
       username: username
     });
-
     if (!user) {
       return res.status(400).json({
         message: "User does not exist"
