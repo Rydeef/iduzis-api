@@ -12,9 +12,10 @@ app.use(require("cors")());
 async function startServer() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-
-    app.listen(process.env.SERVER_PORT, () =>
-      console.log(`App has been started on port ${process.env.SERVER_PORT}`)
+    
+    const PORT = process.env.SERVER_PORT || 3000;
+    app.listen(PORT, () =>
+      console.log(`App has been started on port ${PORT}`)
     );
   } catch (e) {
     console.log("Server error", e.message);
